@@ -1,0 +1,1146 @@
+@CHARSET "UTF-8";
+
+
+
+ 
+@import url("desktop/full.css") screen and (min-width:980px);
+@import url('tablet/full.css') screen and (min-width:720px) and (max-width: 979px);
+@import url('smartphone/full.css') screen  and (max-width: 719px);
+@import url('smartphone/full-landscape.css') screen and (min-width: 320px)  and (max-width: 719px) and (orientation: landscape);
+
+
+#sbox-window{
+	padding:0px !important;	
+}
+
+#maininner{
+	overflow: hidden;	
+}
+ 
+#yoo-zoo .item .pos-media > img{
+	width:100%;	
+	height:auto;
+}
+#yoo-zoo .item .pos-media .zoo-gallery.lbox .zoo-gallery-wall .thumb{
+
+	display: none;
+	visibility: hidden;			
+}
+
+#yoo-zoo .item .pos-media .zoo-gallery.lbox .zoo-gallery-wall .thumb:FIRST-CHILD{
+
+	display: block;
+	visibility: visible;		
+}
+
+#yoo-zoo .item .zoo-gallery.sshow .zoo-gallery-wall{
+	display: none;
+	visibility: hidden;		
+}
+
+#yoo-zoo .item{
+	width: 100%;
+}
+
+#yoo-zoo .item .columna{
+
+	float: left;
+	overflow: hidden;
+	
+}
+
+#yoo-zoo .item .columna.col0{
+	width: 25%;
+	
+}
+
+#yoo-zoo .item .columna.col1{
+	width: 50%;
+	
+}
+ 
+#yoo-zoo .item .columna.col2{
+	width: 25%;
+}
+
+#yoo-zoo .item .columna.col3{
+	width: 25%;
+    float: right;
+}
+
+#yoo-zoo .item .columna.col12{
+	width: 75%;
+}
+#yoo-zoo .item .columna.col123{
+	width: 100%;
+}
+
+#yoo-zoo .item .columna .columnabg{
+	padding:15px;	
+	border-right: 1px solid white;
+}
+#yoo-zoo .item .columna:LAST-CHILD .columnabg,
+#yoo-zoo .item .columna.catalogos .columnabg,
+#yoo-zoo .item .columna.experiencias .columnabg{
+	border-right: none;
+}
+ 
+
+#yoo-zoo .item .pos-media .zoo-gallery{
+	max-width: 480px;
+	margin: 0px auto 15px;	
+}
+ 
+.ficha .columna.col0 .module,
+.ficha .columna.col1 .module,
+.ficha .columna.col2 .module, 
+.ficha .columna.col3 .module{
+    border-bottom: 1px solid #FFF;
+    padding: 2px 0px 15px 0px;
+    margin-bottom:15px;
+    overflow: hidden;
+}
+
+.ficha h3{
+		font-size: 17px;
+	line-height:17px;
+	font-size: 1.7rem;
+	line-height:1.7rem;
+	text-transform: uppercase;
+	padding:0px 0px 5px;
+}
+#yoo-zoo .item .columna.col3 h3{
+		font-size: 17px;
+	line-height:17px;	
+	font-size: 1.7rem;
+	line-height:1.7rem;	
+}
+.changewidth{
+	width:75% !important;
+	float:left;
+}
+.changewidth .col1 {
+	width:66.666% !important;
+}
+.changewidth .col2 {
+	width:33.333% !important;
+}
+.changewidth .encabezado{
+	border-bottom-width:2px;
+	border-bottom-style:solid;
+}
+.changewidth .encabezado .row{
+	width:100%;
+}
+.changewidth .encabezado .pos-title{
+	float:left;
+	width:70%;
+	padding:0 !important;
+}
+.changewidth .encabezado .content{
+	padding:15px;
+}
+.changewidth .encabezado .botones{
+	width:auto !important;
+	display: inherit !important;
+	float:right;
+}
+.changewidth .encabezado .botones .compartelo{
+	display: inline-block;
+	float:none;
+}
+.changewidth .encabezado .botones .actionbutton{
+	float:none;
+	display:inline-block;
+	padding:0 !important;
+}
+.changewidth .subtitle{
+	width:100%;
+	color: black !important;
+	padding:5px 15px 0px;
+}
+.changewidth .subtitle div{
+	display:inline-block;
+}
+.changewidth .col1 .col1bg{
+	border-right:1px solid white !important;
+}
+.changewidth .columnabg{
+	border:none !important;
+}
+.ficha{
+	width:100%;
+}
+.ficha p{
+	margin: 7px 0;
+}
+.ficha .box{
+    /*padding:7px 15px 5px;*/
+}
+.ficha .pie_ficha ul li{
+	display:inline-block;
+	margin-right:1em;
+}
+.ruta .box-3 {
+	padding: 0px 15px 2px;
+	margin-bottom: 5px;
+	overflow:hidden;	
+}
+.ruta h3 {
+	   font-size: 12px;
+	line-height: 18px;
+   font-size: 1.2rem;
+	line-height: 1.8rem;
+	text-transform: uppercase;
+	margin-top: 8px;
+	margin-bottom: 0px;
+	color: black;
+	display:block;
+	float:left;
+	width:75%; 
+}
+ .ruta h3 span {
+    text-transform: uppercase;
+    	font-size: 12px;
+	line-height: 18px; 
+	font-size: 1.2rem;
+	line-height: 1.8rem; 
+	color:black;
+}
+ .ruta h3 span a{
+    color:black;
+}
+.ruta .compartelo .box{
+	margin-right: 0px;
+margin-top: 0px;
+}
+#yoo-zoo .ficha .encabezado{
+	display: table;
+	width: 100%;
+	 
+	background:black;
+	color:white;
+}
+.ficha .columnas{
+	overflow:hidden;	
+	padding-top:0px;
+}
+ 
+
+/* ENCABEZADO */
+
+.ficha .encabezado .pos-title{
+	/*float: left;*/
+	padding: 15px 15px;
+	display: table-cell;
+	vertical-align: top;
+}
+.ficha .encabezado .pos-title .num{
+	    font-size: 5px;
+    line-height: 5px;
+    font-size: 5rem;
+    line-height: 5rem;
+    padding-right: 10px;
+    float: left;
+}
+.ficha .encabezado .pos-title h1{
+		font-size: 22px;
+	font-size: 2.2rem;
+	text-transform:uppercase;
+	line-height: 25px;
+	line-height: 2.5rem;
+    margin-bottom: 3px;
+	/*padding-top: 10px;*/
+}
+.ficha .encabezado .pos-title h1.dest{
+		font-size:40px;
+	line-height:40px;
+	font-size:4rem;
+	line-height:4rem;
+	margin-bottom:2px;
+}
+.ficha .encabezado .pos-title .domicilio{
+	line-height:14px;
+    line-height:1.4rem;
+    
+}
+.ficha .encabezado .botones{
+	width:10%; 
+	display: table-cell; 
+}
+.ficha .encabezado .actionbutton{
+	width: 100%;
+	float: left; 
+	padding-top: 10px;
+}
+.ficha .encabezado .actionbutton .loquiero{
+	padding: 0px;	
+	float: right;
+	padding-right: 13px;
+	width: 67px;
+} 
+.ficha .encabezado .botones table{
+	width:100%;
+	text-align:center;	 
+}
+ 
+ 
+.ficha .gallery{
+    position:relative;
+    margin-bottom:15px;
+}
+.ficha .gallery .domicilio {
+    background: #BDA467;
+    padding: 5px 15px;
+    color:white;
+}
+ 
+ 
+
+.ficha .comollegar{
+overflow: hidden;
+padding: 10px 0;
+}
+
+.ficha .comollegar .inputbg{
+
+		float: left;
+			
+}
+
+.ficha .comollegar .buttons input{
+	
+	width: 50%;
+	
+}
+.ficha .comollegar input{
+	width:96%;	
+	float:left;
+	border-style: none;
+}
+.ficha .comollegar input[type=text]{
+	border-style: none;
+	
+}
+.ficha .comollegar input[type=submit]{
+	color: white;
+}
+
+.ficha .mapa img{
+	width: 100%;
+	height: auto;
+	margin: 10px 0 5px 0;
+}
+#yoo-zoo .maptoolbar {
+	background-color: #FAFAFA;
+	overflow: hidden;
+	padding: 4px 0;
+}
+
+#yoo-zoo .maptoolbar h3{
+	padding: 0;
+	margin: 0;
+	line-height: 20px;
+	line-height: 2rem;
+	color: #666;
+}
+
+
+
+#yoo-zoo .maptoolbar ul{
+	list-style-type: none;
+	
+}
+
+#yoo-zoo .maptoolbar ul li{
+	
+	line-height: 0;
+	padding: 4px 8px;
+}
+
+#yoo-zoo .maptoolbar ul.left li{
+	float: left;
+	border-right: 1px solid #666;
+}
+
+#yoo-zoo .maptoolbar ul.left li:LAST-CHILD{
+
+	border-right: none;
+}
+#yoo-zoo .maptoolbar ul.right li{
+	float: right;
+	border-left: 1px solid #666;
+}
+/*
+.ficha .mapa .linkItemsMap{
+	margin-bottom: 6px;
+	width: 50%;
+	font-size: 1rem;
+}
+.ficha .mapa .linkCatMap img{
+	height: 12px;
+	width: 12px;
+	margin: 0px 10px 0px 0px;
+}
+.ficha .mapa .linkItemsMap img{
+	height: 12px;
+	width: 12px;
+	margin: 0px 10px 0px 0px;
+	float: left;
+}
+.ficha .coordenadas form{
+	margin: 10px 0;
+}
+
+.ficha .capturalo img{
+
+	width: 100%;
+	height: auto;
+}
+*/
+
+
+.ficha .servicios{
+
+	padding: 5px 10px;
+		
+}
+
+.ficha .servicios_habitaciones{
+
+	padding-bottom: 30px;
+		
+}
+
+.ficha .servicios ul{
+	margin-top: 10px;
+}
+
+ 
+
+ 
+.ficha .columna.col3 .module:LAST-CHILD{
+	border-bottom:0px;	
+}
+ 
+
+.ficha .contacta ul{	
+	margin-top: 15px;
+}
+
+.ficha .contacta  div.element > h3{
+		font-size: 13px;
+	line-height: 15px;
+	font-size: 1.3rem;
+	line-height: 1.5rem;
+	margin-bottom: 0px;
+		
+}
+
+ 
+.ficha .contacta a, .ficha .contacta a:HOVER, .ficha .contacta a:ACTIVE, .ficha .contacta a:VISITED{
+	color: inherit;
+}
+.ficha .siguenos ul.layout-all{
+	clear: both;
+	overflow: hidden;
+	list-style: none;
+	margin-top: 15px;
+}
+.ficha .siguenos ul.layout-all li{
+
+	float: left;
+	width: 25%;
+}
+
+.ficha .siguenos ul.layout-all li img{
+
+	width: 48px;
+	height: auto;
+		
+}
+
+.ficha .enviatufoto td{
+	padding-top: 3px;
+	padding-left: 3px;	
+	
+	width: 33%;
+}
+ 
+.ficha .enviatufoto img{
+	width: 100%;
+	height: auto;	
+}
+
+ 
+.ficha .pie_ficha{
+	background-color: black;
+	overflow:hidden;
+	border-top-width:2px;
+	border-top-style:solid;
+}
+.ficha .pie_ficha .reportar_error a{
+	display: block;
+	margin: 7px 15px 5px;
+	color:white;
+}
+.ficha .pie_ficha .reportar_error a span{
+	text-transform:uppercase;
+		font-size: 14px;	
+	line-height: 16px;	
+	font-size: 1.4rem;	
+	line-height: 1.64rem;	
+}
+.ficha .mobile{
+	display:none !important;	
+}
+
+ 
+ 
+.ficha .zoo-item-list.horizontal{
+
+	width: 100%; 
+	overflow: hidden;
+}
+
+.ficha .zoo-item-list.horizontal li{
+
+	width: 25%;
+	text-align: center;
+}
+
+.ficha .zoo-item-list.horizontal li a, .ficha .zoo-item-list.horizontal li a:VISITED,.ficha .zoo-item-list.horizontal li a:ACTIVE, .ficha .zoo-item-list.horizontal li a:HOVER{
+	color: white;
+	text-decoration: none;
+}
+
+.ficha .zoo-item-list.horizontal .layout-otrositems{
+
+	
+	margin: 10px 0;
+	overflow: hidden;
+		
+}
+
+.ficha .zoo-item-list.horizontal .layout-otrositems .media{
+	
+	padding: 5px;
+	
+}
+.ficha .zoo-item-list.horizontal .layout-otrositems .media img{
+	width: 100%;
+	height: auto;
+	
+	
+}
+
+.ficha .ffuerza{
+	font-size: 14px;
+	font-size: 1.4rem;
+}
+.ficha .servicios li,
+.ficha .contacta li{
+	margin-bottom:3px;
+	list-style:none;	
+}
+.ficha .columna.col123 .module{
+   border-top:1px solid white;
+   padding-top: 15px;
+   border-bottom: 1px solid white;
+    padding-bottom: 15px;
+}
+.loquiero .loquiero_btn{
+	margin: 0px auto;
+	width: 33px;
+	height: 33px; 
+	cursor:pointer;
+}
+.ui-tooltip-content .pos-extras{
+	float: left;
+width: 30%;
+padding-left: 10px;
+}
+.ui-tooltip-content .loquiero{
+	position: relative;
+}
+.ui-tooltip-content .loquiero .loquiero_btn{
+	float: right;
+}
+.ui-tooltip-content .loquiero .contador_favoritos{
+	position: absolute;
+	top: 3px;
+	color: black;
+	background-color: white;
+	border: 1px solid #CCC;
+	padding: 3px 5px;
+	border-radius: 6px;
+	width: 36px;
+	text-align: right;
+}
+.loquiero .loquiero_btn img.selected{
+	display:none;
+}
+.loquiero.favorite .loquiero_btn img{
+	display:none;
+	margin:0px auto;
+}
+.loquiero.favorite .loquiero_btn img.selected{
+	display:block;
+}
+.loquiero  .actionlabel{
+	text-align: center;
+	
+}
+
+
+/* CLASE C */
+#yoo-zoo.product-destinos .item .ficha-c .columnas{
+	border-right:1px solid #EEE;
+	border-left:1px solid #EEE;
+}
+#yoo-zoo.product-destinos .item .ficha-c .columna.col2 .col2bg{
+	background-color:#EEE;
+}
+#yoo-zoo.product-destinos .item .ficha-c .columna.col0 .module, 
+#yoo-zoo.product-destinos .item .ficha-c .columna.col1 .module, 
+#yoo-zoo.product-destinos .item .ficha-c .columna.col2 .module, 
+#yoo-zoo.product-destinos .item .ficha-c .columna.col3 .module{
+	
+	border:0px;
+}
+#yoo-zoo.product-destinos .item .ficha-c .description td.num {
+		font-size: 14px;
+	line-height: 20px;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	text-align: right;
+	padding-right: 5px;
+	vertical-align: top;
+}
+
+
+	/* MODULO RESERVA */
+	
+.reserva{
+	background-color:white;
+}
+.reserva .encabezado{
+	padding:15px 10px;
+	background:#666;
+	color:white;
+	text-align:center;
+	border-width:0px;
+		font-size: 18px;
+	line-height: 20px;
+	font-size: 1.8rem;
+	line-height: 2rem;
+}
+.reserva .encabezado .text{
+	text-transform:uppercase;
+	margin-bottom:5px;
+}
+.reserva .encabezado .precio span{
+	font-size:12px;
+	font-size:1.2rem;
+	margin-right:5px;
+}
+.reserva .square{
+	width: 0;
+    height: 0;
+    border-left: 83px solid transparent;
+    border-right: 83px solid transparent;
+    border-top: 20px solid #666;
+}
+.reserva .form{
+	padding:5px 10px;
+	font-ize:10px;
+	font-ize:1rem;
+}
+.reserva .form .row{
+	width:100%;
+	padding:5px 0px;
+	text-align: left;
+}
+.reserva .form .row .date{
+	width:60px;
+	display:inline-block;
+	font-size:10px;
+	font-size:1rem;
+	padding: 5px;
+}
+
+.reserva .form .row input{
+	background-color: #EEEEEE;
+	border: none;
+	
+}
+
+
+.reserva .form .row label{
+	width:40px;
+	display:inline-block;
+	font-size:10px;
+	font-size:1rem;
+}
+
+.reserva .form .row.comensales label{
+	width:62px;
+}
+
+.reserva .form .row.comensales input{
+	width: 60px;
+}
+
+.reserva .form .row .ui-datepicker-trigger{
+	display: inline-block;
+	vertical-align: middle;
+	/*width: 24px;*/
+	margin-left: 5px;
+}
+
+.reserva .form .row.hora .ui-datepicker-trigger{
+	margin-left: 0;
+}
+
+#ui-datepicker-div{
+	background-color:white;
+	border:1px solid #EEE;
+}
+#ui-datepicker-div .ui-datepicker-header{
+	background-color:whitesmoke;
+}
+#ui-datepicker-div .ui-datepicker-header .ui-datepicker-prev{
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-right: 12px solid #666;
+	border-bottom: 6px solid transparent;
+	margin-top: 4px;
+}
+#ui-datepicker-div .ui-datepicker-header .ui-datepicker-next{
+	width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-left: 12px solid #666;
+    border-bottom: 6px solid transparent;
+    margin-top:4px;
+}
+.reserva .form .row label{
+	text-align:left;
+}
+.reserva .form .row .celda{
+	width:36px;
+	display:inline-block;
+	padding:0px 4px
+}
+.reserva .form .row .celda .int{
+	width:100%;
+	padding: 2px 4px;
+	text-align: center;
+}
+.reserva .form .row button{
+	background-color:#8d1c78;
+	border:none;
+	color:white;
+	padding:4px 8px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	width: 100%;
+}
+
+	/* END MODULO RESERVA */
+	
+	/* DISTINTIVOS */
+	
+.distintivo .items .item {
+	width:auto !important;
+	margin:0px 5px;
+}
+	
+.distintivo .items .item img{
+	width:100%;
+	height:auto;
+}
+	
+	/* MODULO MASINFO */
+
+.masinfo .listIcons li{
+	margin-bottom:0px;
+	width:100%;
+	overflow:hidden;
+}
+.masinfo .listIcons li a{
+	color:#666 !important;
+}
+.masinfo .listIcons li:hover a{
+	color:black !important;
+	text-decoration:none !important;
+}
+.masinfo .listIcons li img{
+	float:left;
+	margin-right:8px;
+	margin-bottom:8px;
+}
+.masinfo .listIcons li:hover img{
+	display:none;
+}
+.masinfo .listIcons li img.over{
+	display:none;
+}
+.masinfo .listIcons li:hover img.over{
+	display:block;
+}
+.masinfo .listIcons li div:first-child,
+.masinfo .listIcons div.icon16.telefono{
+	margin-right:8px;
+}
+.masinfo .listIcons li,
+.masinfo .listIcons{
+	color:#666;
+}
+.masinfo .listIcons .value{
+	color:#666;
+	vertical-align:top;
+	padding-top:2px;
+}
+.masinfo .listIcons .value:hover{
+	color:black;
+}
+.masinfo .listIcons a{
+	display:inline-block;
+}
+.masinfo .telefonos div{
+	display:inline-block;
+	margin:5px 0px;
+}
+.masinfo .telefonos .value{
+	margin-left:10px;
+} 
+	
+	/* END MODULO MASINFO */
+	
+	/* MODULO PDF */
+	
+.descargarPDF{
+	cursor:pointer;
+}
+.descargarPDF .icon48{
+	float:left;
+}
+.descargarPDF .width75{
+	width:70% !important;
+}
+	/* END MODULO PDF */
+
+/* END CONTENT CARD */
+
+
+/* SIDEBAR */
+
+.cardItem .colSide img{
+	width:100%;
+	height:auto;
+}
+.cardItem .colSide p{
+	font-weight:400 !important;
+	color: #AAA !important;
+}
+.cardItem .colSide .box{
+	padding:15px;
+}
+.cardItem .colSide h3{
+	border-bottom-style:solid;
+	border-bottom-width:2px;
+}
+.cardItem .colSide span{
+		line-height: 18px;
+	font-size: 16px;
+	line-height: 1.8rem;
+	font-size: 1.6rem;
+}
+.cardItem .colSide span.vermas{
+			line-height: 16px;
+	font-size: 11px;
+	line-height: 1.6rem;
+	font-size: 1.1rem;
+	}
+.cardItem .colSide ul li{
+	list-style: none;
+	line-height: 16px;
+	line-height: 1.6rem;
+}
+.cardItem .colSide .relExperiencias h3{
+	border-bottom-color:#f2822e;
+	color:black !important;
+}
+.cardItem .colSide .relExperiencias .overflowItems .titulo span{
+		font-size:11px;
+	line-height: 22px;
+	font-size:1.1rem;
+	line-height: 2.2em;
+}
+.cardItem .colSide .relExperiencias .expRel .content a:hover{
+	color:inherit !important;
+	text-decoration:none;
+}
+.cardItem .colSide .relExperiencias .verTodos{
+	float:left;
+	height:24px;
+	margin-top:8px;
+}
+.cardItem .colSide .relExperiencias .verTodos img{
+	width:24px;
+	height:24px;
+	display:inline;
+	vertical-align:middle;
+}
+.cardItem .colSide .relExperiencias .verTodos div{
+	display:inline-block;
+	vertical-align:top;
+	margin-top:4px;
+}
+.cardItem .colSide .eventosProximos .content a:hover{
+	color:inherit !important;
+	text-decoration:none;
+}
+.cardItem .colSide .eventosProximos h3{
+	color:black !important;
+	border-bottom-color: #daa230;
+}
+.cardItem .colSide .content{
+	padding:0px;
+}
+.cardItem .colSide .proximidad h3{
+	border-bottom-color:#666666;
+}
+/*.cardItem .colSide .box .categoria.grupo .title.titulo,
+.cardItem .colSide .box .categoria.grupo.open .title.titulo {
+	background-position: 102% 10px;
+}*/
+.cardItem .colSide .box .categoria .title{
+	padding-top:5px;
+	border-bottom:1px solid #EEE;
+	height:20px;
+}
+.cardItem .colSide .box .categoria .text{
+	float:left;	
+	text-transform:uppercase;
+	font-size: 1rem;
+	font-size: 10px;
+	color:black;
+}
+.cardItem .colSide .box .categoria.open .text{
+	color:inherit !important;
+}
+.cardItem .colSide .box .categoria:hover .text{
+	color:inherit !important;
+}
+.cardItem .colSide .box .categoria .items .content a:hover{
+	color:inherit !important;
+	text-decoration:none;
+}
+.cardItem .colSide .box .categoria .iconDes{
+	height:16px;
+	width:16px;
+	border:1px solid #AAA;
+	float:right;
+}
+.cardItem .colSide .box li{
+	padding:5px 0px;
+	border-bottom:1px solid #EEE;
+}	
+.cardItem .colSide .box li .number{
+	display: inline-block;
+	width: 20%;
+	vertical-align: top;
+}
+.cardItem .colSide .box li .number p{
+	padding-left:5px;
+}
+.cardItem .colSide .box li .content{
+	display: inline-block;
+	width: 75%;
+	vertical-align: top;
+}
+	
+	/* DESTINO */
+	
+.cardItem .colSide .destino h3{
+	border-bottom-color:#43a455;
+}
+.cardItem .colSide .destino .box{
+	position:relative;
+	padding:0px;
+}
+.cardItem .colSide .destino .box .loquiero{
+	display:none;
+}
+.cardItem .colSide .destino .box .pos-media{
+	margin-top:10px;
+}
+.cardItem .colSide .destino .box .pos-info{
+	display:none;
+}
+.cardItem .colSide .destino .box .pos-info a{
+	color:white;
+}
+.cardItem .colSide .destino .box .pos-info .box-2{
+	padding: 10px;
+	bottom: 0px;
+	position: absolute;
+}
+.cardItem .colSide .destino .box .pos-info .box-2 h6{
+	display:none;
+}
+.cardItem .colSide .destino .box .pos-info .box-2 h2{
+	display:none;
+}
+.cardItem .colSide .destino .box .pos-info .box-2 .categorias{
+	display:none;
+}
+.cardItem .colSide .destino .box .pos-extras {
+	display:none;
+}
+	
+	/* END DESTINO */
+	
+/* END SIDEBAR */
+
+/* MODULO AUNCLICK */
+
+.destino .verhacersaber .pos-media{
+	border:none !important;
+}
+.destino .verhacersaber .box{
+	padding:0px;
+}
+.destino .verhacersaber .footer{
+	margin:0px;
+}
+.verhacersaber h2{
+	font-weight: 400;
+	text-transform: uppercase;
+	
+}
+.verhacersaber h5{
+	text-transform:uppercase;
+	line-height:15px;
+	line-height:1.5rem;
+	margin-top:2px;
+}
+.verhacersaber h6{
+	text-transform:uppercase;
+	line-height:15px;
+	line-height:1.5rem;
+}
+.verhacersaber .subHeader{
+	padding:0px 15px;
+}
+.verhacersaber .subHeader h3 span{
+	color:#AAA;
+	font-weight:400;
+}
+.verhacersaber #container{
+	position:relative;
+}
+.verhacersaber .grid{
+	display:inline-block;
+	padding:0px;
+	vertical-align:top;
+}
+.verhacersaber .container2{
+	position:relative;
+	left:0px;
+}
+.verhacersaber .grid .row{
+	margin:10px;
+}
+.verhacersaber .grid .row .cell{
+	margin: 0px 5px;
+}
+.verhacersaber .grid .row .cell img{
+	width:100%;
+	height:auto;
+}
+.verhacersaber .grid .pos-media{
+	position:relative;
+}
+.verhacersaber .grid .pos-info{
+	position:absolute;
+	bottom:0px;
+	color:white !important;
+	width:100%;
+	background:transparent url(/templates/tgd_alpha/images/tramas/sombra-1.png) 0px top repeat;
+	height:120px;
+	pointer-events: none;
+}
+.verhacersaber .grid .pos-info .box{
+	padding:10px;
+	position:absolute;
+	bottom:0px;
+}
+.verhacersaber .grid .pos-info a{
+	color:white;
+}
+.verhacersaber .grid .pos-info a:hover{
+	text-decoration:none !important;
+}
+.verhacersaber .grid .pos-info .top{
+	padding-bottom:5px;
+}
+.verhacersaber .grid .pos-info  p{
+	margin:0;
+	padding:0;
+}
+.verhacersaber .navigate{
+	position: absolute;
+	top: 50%;
+	height: 35px;
+	width: 35px;
+	z-index:1;
+	display:block;
+	cursor:pointer;
+}
+.verhacersaber #next{
+	right:0;
+	background-image:url(/modules/mod_djimageslider/assets/next.png);
+}
+.verhacersaber #prev{
+	left:0;
+	background-image:url(/modules/mod_djimageslider/assets/prev.png);
+}
+.verhacersaber .pos-media{
+	border-top-width:3px;
+	border-top-style:solid;
+}
+.verhacersaber .leyend{
+	padding:0px 15px;
+}
+.verhacersaber .leyend .cat{
+	padding:5px 15px;
+}
+.verhacersaber .leyend .cat .icon8{
+	margin: 4px 8px 0px 0px;
+}
+#VHS .grid{
+	width:100%;
+}
+
+
+#yoo-zoo .item .compartelo .desplegable{
+	width:140px !important;
+}
+#yoo-zoo .item .compartelo .desplegable ul {
+	margin-top: 66px;
+}
+
+
+
+
+ 
+
+
+#yoo-zoo.eventos .maptoolbar ul.right{
+	display:none;
+}

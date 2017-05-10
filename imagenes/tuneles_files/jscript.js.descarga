@@ -1,0 +1,654 @@
+/**
+ * Template scripts 
+ */
+
+var $ = jQuery.noConflict();
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
+ 
+
+function zooitemCreateFavorite(id){  
+	   
+		$.ajax({
+			url: '/component/miviaje?format=raw&task=create&itemid='+id,
+			complete: function(result) {  
+				if(result.responseText == 1){
+					$('.loquiero_'+id).addClass('favorite');
+					$('.loquiero_'+id).attr('onclick', 'zooitemDeleteFavorite('+id+')');
+					var valor = parseInt($('.loquiero_'+id+' .contador_favoritos').html())+1;
+					$('.loquiero_'+id+' .contador_favoritos').html(valor);
+					$('.header_miviaje span#num_favoritos_miviaje').html(parseInt($('.header_miviaje span#num_favoritos_miviaje').html())+1);
+					
+					
+					//$('.loquiero_'+id+' .contador_favoritos').fadeIn('slow');
+					 
+				} 
+        	},
+        	dataType: 'html'
+		});
+	 
+	 
+}
+
+function zooitemDeleteFavorite(id){   
+ 
+	 
+    	
+		$.ajax({
+		  url: '/component/miviaje?format=raw&task=delete&itemid='+id,
+		  complete: function(result) { 
+			  if(result.responseText  == 1){
+					$('.loquiero_'+id).removeClass('favorite');
+					$('.loquiero_'+id).attr('onclick', 'zooitemCreateFavorite('+id+')');
+					var valor = parseInt($('.loquiero_'+id+' .contador_favoritos').html())-1;
+					$('.loquiero_'+id+' .contador_favoritos').html(valor);
+					if(valor <= 0){
+						
+						//$('.loquiero_'+id+' .contador_favoritos').fadeOut('slow');
+					}
+					$('.header_miviaje span#num_favoritos_miviaje').html(parseInt($('.header_miviaje span#num_favoritos_miviaje').html())-1);
+			  }
+		  },
+		  dataType: 'html'
+		});
+	 
+	 
+}
+ 
+function setImageView(toImageView){
+	  
+	$("#yoo-zoo .items").css("opacity", 0.4);
+	window.setTimeout(function() {
+		if(toImageView){
+			$("#yoo-zoo").attr('class', $("#yoo-zoo").attr('class').replace('listview', 'imageview')) ;
+			$('#typeview').val('imageview');
+		}else{
+			$("#yoo-zoo").attr('class', $("#yoo-zoo").attr('class').replace('imageview', 'listview')) ;
+			$('#typeview').val('listview');
+		}
+		$("#yoo-zoo .items").css("opacity", 1);
+	}, 500);
+}
+
+function showMapaList(){
+ 
+	
+	if($('#showmap').val() > 0){
+		$('.mapalist').animate({height:0},400, function(){
+			
+			$('.mapalist').toggleClass('visible', false); 
+			$('.mapalist').css('display', 'none');
+			$('#showmap').val('0'); 
+			
+		});
+		
+	}
+	else{
+		$('.mapalist').animate({height:573},400, function(){
+			
+			$('.mapalist').toggleClass('visible', true);
+			$('#showmap').val('1'); 
+			$('.mapalist').css('display', 'block');
+			
+		});
+	}
+	
+	 
+	 
+}
+ 
+function onloadMarkers(){  
+	 
+	var zooapp = $("#zooapp").val();
+	var page = $("#zoopage").val();
+	var categorias = $("#category").val();
+	var destinos = $("select[name='destino[]']").val();
+	if( destinos == undefined){
+		destinos = $("#destino").val();
+	}
+	var orden =  $("#orden").val();  
+	var typeview = $("#typeview").val();
+	var showmap = $("#showmap").val();
+	var favorite = $("#share").val();
+	var searchword = $("#searchword").val();
+	if( searchword == undefined){
+		searchword = '';
+	}
+	
+	
+	$.getJSON('index.php?option=com_zoolist&tmpl=component&format=json&zooapp='+zooapp+'&categories='+categorias+'&destinos='+destinos+'&orden='+orden+'&typeview='+typeview+'&page='+page+'&showmap=1&searchword='+searchword+'&favorite='+favorite, function(data) {
+		
+		var latlngbounds = new google.maps.LatLngBounds();
+//		console.log(data);
+		
+		$.each(data, function(key, val) { 
+			if(key == 'mapitems'){
+				 
+				for (i=0;i< val.length;i++){   
+		        	 var latng=new google.maps.LatLng(val[i]['lat'],val[i]['lng']);
+		        	 
+		        	 eval("marker_"+i+" = new google.maps.Marker({ position:latng , map: map, title: '"+val[i]['id']+"' });");
+		        	  
+		        	 if(data['markers'][val[i]['category']]){
+		        	 	eval("marker_"+i+".setIcon('/'+data['markers'][val[i]['category']])");
+		        	 }
+		        	 
+		             google.maps.event.addListener(eval("marker_"+i), "click", function() {
+					        load_content(this, this.title);
+					});
+		            
+		        	 latlngbounds.extend(latng);
+		         } 
+		         if(val.length < 2){
+		        	 latlngbounds.extend(new google.maps.LatLng(19.341, -97.843));
+		         }
+		         
+	         
+			}
+		});
+		//$('.mapalist').css("opacity", 1);
+		if(!latlngbounds.isEmpty()){
+			map.fitBounds( latlngbounds );
+		}
+	});
+	
+}
+ 
+
+function incrementShare(id_item){
+	$.ajax({ 
+		url: '/component/miviaje?format=raw&task=incrementshare&itemid='+id_item+'&random='+Math.floor(Math.random()*10000000),
+		complete: function(result) {  
+			if(result.responseText > 0){
+				
+				 $('.compartir .contador').html(result.responseText);
+			} 
+    	},
+    	dataType: 'html'
+	});
+ 
+}
+
+function compartirMiViaje(){
+	var titulo = $('.titulo_lista').val();
+	var texto = $('.text_lista').val();
+	console.log(titulo+' '+texto)
+	$.ajax({ 
+		url: '/component/miviaje?format=raw&task=compartirmiviaje&titulo='+titulo+'&texto='+texto+'&random='+Math.floor(Math.random()*10000000),
+		complete: function(result) { console.log(result);  },
+    	dataType: 'html'
+	});
+ 
+}
+
+$(function(){
+	
+	
+	// VER TODO
+	$('.desplegar').click(function(){
+		$(this).animate({
+			height: '0px'
+		}, function(){ $(this).hide() });
+	});
+	
+	$('.leermas').click(function(){
+		$(this).parent('.mig').find('p').each(function(){
+			$(this).show();
+		});
+		$(this).hide();
+	});
+
+	
+	
+	// Aclas animadas
+    $('a[href*=#]').click(function() {
+
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+            && location.hostname == this.hostname) {
+
+                var $target = $(this.hash);
+
+                $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+
+                if ($target.length) {
+
+                    var targetOffset = $target.offset().top;
+
+                    $('html,body').animate({scrollTop: targetOffset}, 1000);
+
+                    return false;
+
+               }
+
+          }
+
+      });
+    
+    
+    var menuStatus;
+ // Oculto los submenus
+	$(" #menu-smart .menumenu-dropdown ul.submenu ").css({display: "none"});
+	// Defino que submenus deben estar visibles cuando se pasa el mouse por encima
+	$(" #menu-smart .menumenu-dropdown > li").hover(
+		function(){  
+			 
+				$(this).find('ul:first:hidden').css({visibility: "visible",display: "none"}).slideDown(200);
+		 
+		},function(){
+	 
+		        $(this).find('ul:first').slideUp(0);    
+		 
+		}
+	);
+	
+    $("#left-action").click(function(){
+        if(menuStatus != true){
+        	$(".page").animate({
+        			marginLeft: "220px",
+        		}, 300, function(){menuStatus = true});
+        	$(".page #opacidad").addClass('open');
+        	$("#left-mob").css('display', 'block');
+        	$("#left-mob").animate({
+        			left: "0px",
+	        		}, 300);
+	        	$(this).addClass('select');
+	        	$('.page .wrapper').css('height', $('#left-mob').outerHeight());
+        } else {
+            $(".page").animate({
+            		marginLeft: "0px",
+            	}, 300, function(){menuStatus = false});
+            $(".page #opacidad").removeClass('open');
+            $("#left-mob").animate({
+            		left: "-270px",
+              	}, 300);
+            $(this).removeClass('select');
+            $('.page .wrapper').css('height', 'auto');
+            $("#left-mob").css('display', 'none'); 
+        }
+    });
+    $("#left-mob ul.submenu a").click(function(){
+    	$("#left-action").click();
+    }) ;
+    $("#left-mob .fondo-catalogo0.level1").click(function(){
+    	location.href="/";
+    	$("#left-action").click();
+    });
+    $("#left-mob .inputbox").keypress(function(e){
+    	if(e.which == 13) {
+    		$("#left-action").click();
+    	}
+    });
+    $("#right-action").click(function(){
+        if(menuStatus != true){
+        	$("#right-mob").addClass('open');
+        	$("#right-mob").css('display', 'block'); 
+        	$(".page").animate({
+        		marginLeft: "-200px",
+        		}, 300, function(){menuStatus = true});
+        	$(".page #opacidad").addClass('open');
+        	$("#right-mob").animate({
+        			right: "0px",
+        		}, 300);
+        	
+        	$(this).addClass('select');
+        	$('.page .wrapper').css('height', $('#right-mob').outerHeight());
+        	
+        	
+        } else {
+            $(".page").animate({
+            	marginLeft: "0px",
+            	}, 300, function(){menuStatus = false});
+            $(".page #opacidad").removeClass('open');
+            $("#right-mob").animate({
+            		right: "-270px",
+              	}, 300);
+            $(this).removeClass('select');
+            $('.page .wrapper').css('height', 'auto');
+            $("#right-mob").removeClass('open'); 
+            $("#right-mob").css('display', 'none');
+        }
+        return false;
+    });
+    
+    
+    $("#left-mob li.level1").click(function(){
+    	
+    	if(!$(this).hasClass('open')){ 
+    		$('#left-mob .submenu').hide(300);
+        	$("#left-mob li.level1.open").removeClass('open');
+    		jQuery('.submenu', $(this)).show(300); 
+    		$(this).addClass('open');
+    		event.preventDefault();
+    	}else{
+    		jQuery('.submenu', $(this)).hide(300);
+    		$("#left-mob li.level1.open").removeClass('open');
+    	}
+    });
+
+    
+    $('.actionbutton.desktop').click(function(){
+    	 	
+    	if($(this).hasClass('listview')){
+    		$('.actionbutton.imageview').removeClass('selected'); 
+    	}else{
+    		if($(this).hasClass('imageview')){
+    			$('.actionbutton.listview').removeClass('selected');
+    		}
+    	}
+    	
+    	if($(this).hasClass('selected') && ($(this).hasClass('mapview') || $(this).hasClass('orderby'))){
+    	//if($(this).hasClass('selected') || $(this).hasClass('orderby'))){
+	    	$(this).removeClass('selected');
+	    }else{
+	    	$(this).addClass('selected');
+	   	}
+	     
+    	 
+    }); 
+    
+    $('.actionbutton.mobile').click(function(){
+	 	
+    	if($(this).hasClass('selected')){
+	    	$(this).removeClass('selected');
+	    }else{
+	    	$(this).addClass('selected');
+	   	}
+	     
+    	 
+    }); 
+     
+    
+     
+    $("#showleermas").bind('click', function(){
+    	$("div.descripcion").toggle(500);
+    	$(this).addClass('clicked');
+    });
+     
+    $(".showfiltros").bind('click', function(){
+    		$('.filtroscatalogo').toggle(500);
+    });
+    
+    $(".toggle h3").click(function(){  
+    	
+    	if($(this).parent().hasClass('show')){
+    		$(this).parent().removeClass('show');
+    	}else{
+    		$(this).parent().addClass('show');
+    	}
+    });
+    
+    //$('.accordion > dd.tohide').hide();
+    //$('.accordion > dd.toactive .scroll-pane').jScrollPane({showArrows: true});
+    var allPanels = $('.accordion > dd');
+    
+	  $('.accordion > dt ').click(function() {
+		  
+	      $this = $(this);
+	      $('.accordion > dt ').removeClass('active');
+	      $this.addClass('active');
+	      $target =  $this.next();
+	      
+	      
+
+	      if(!$target.hasClass('active')){
+	         allPanels.removeClass('active').slideUp();
+	         $target.addClass('active').slideDown();
+	      }
+	      
+	      $target.find('.scroll-pane').jScrollPane({showArrows: true});
+	      
+	    return false;
+	  });
+	  
+	  $('.acordeon .grupo .titulo').click(function(){
+		  if(!$(this).parent().hasClass('open')){
+			  var acordeonActual = $(this).parent().parent()[0];
+			  if(acordeonActual != undefined){
+				   
+					  jQuery('.grupo.open .items', $(acordeonActual)).slideUp(400,function(){
+						  jQuery('.grupo.open', $(acordeonActual)).removeClass('open');
+					  });
+					  var esteGrupo = $(this);
+					  jQuery('.items', $(this).parent()).slideDown(400, function(){
+						  esteGrupo.parent().addClass('open');
+					  });
+				  
+			  }
+		  }
+	  });
+	 $('#right').attr('style', 'padding-top:'+$('.encabezado').height()+'px !important');
+	 
+	 $('#fast-actions .contacta').click(function(){
+		  $('#contacta .hidden').toggle(500); 
+		  if($('#fast-actions .contacta .ct').hasClass('click')){
+			  $('#fast-actions .contacta .ct').removeClass('click');
+		  }else{
+			  $('#fast-actions .contacta .ct').addClass('click');
+		  }
+	 }); 
+	 $('#contacta .close-contacta').click(function(){
+		 $('#contacta  .hidden').hide(500);
+		 $('#fast-actions .contacta .ct').removeClass('click');
+	 });
+	 
+	  
+	 var mostrado_calle_derecha = false;
+	 $(".mostrar_derecha").click(function(){
+		 if(mostrado_calle_derecha){
+			 $("#maininner .datos").animate({ marginLeft: '0' }, 500); 
+			 $("#right").animate({ marginRight: '-=200' }, 500); 
+			 $(this).removeClass('mostrar'); 
+			 mostrado_calle_derecha = false;
+		 }else{ 
+			 if($('.yoo-zoo').height() < $('#right').height()){
+				 $('.yoo-zoo').height($('#right').height());
+			 }
+			 $("#maininner .datos").animate({ marginLeft: '-=200' }, 500); 
+			 $("#right").animate({ marginRight: '0' }, 500); 
+			 $(this).addClass('mostrar'); 
+			 mostrado_calle_derecha = true;
+		 }
+	 });
+	 
+	 $(".compartelo").bind('click', function(){
+		 if($(this).hasClass('show')){
+			 $(this).removeClass('show');
+		 }else{
+			 $(this).addClass('show');
+		 }
+		 $(".desplegable").toggle(400);
+	 }); 
+	 
+	 var moviendo = false;
+	 $(".touch").bind('click', function(){
+		 var id = $(this).attr('id');
+		
+		 if(moviendo == false){
+			 moviendo = true;
+			 if($(".rowtouch").hasClass('click')){
+				 
+				 $(".acciones-ficha .open").hide(500, function(){
+					 $(this).removeClass('open');
+					 $(".rowtouch").removeClass('click');
+					 $(".touch").removeClass('click');
+					 moviendo = false;
+					 if(!$(this).hasClass(id)){
+						 $("#"+id).click();  
+					 }
+				 });
+			 }else{
+				 $(".rowtouch").addClass('click');
+				 $("#"+id).addClass('click');
+				 $(".acciones-ficha ."+id).show(500, function(){
+					
+					 $(".acciones-ficha ."+id).addClass('open');
+					 moviendo = false;
+				 });
+			 } 
+		 }
+		 return	 false;
+	 });
+	 // $('.scroll-pane').jScrollPane({showArrows: true});
+    
+});
+
+
+
+
+function load_contentWidget(id, widget){
+	$('.closeBtn').click();
+	$.ajax({
+        async:   false,
+	    url: '/index.php?option=com_map&amp;task=getinfowindow&amp;tmpl=component&amp;no_html=1&amp;marker_id='+id+'&amp;random='+Math.floor(Math.random()*10000000),
+	    success: function(data){
+
+			    	
+			$(widget).tooltip({
+				content: "<div class='teaser-item'>"+data+"</div>",
+				position: {
+					my: "left bottom-10",
+					at: "left top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( '<div>' )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+						$( '<div><span id="iconclosebtn"/></div>' )
+						.addClass( "closeBtn" )
+						.appendTo( this );
+					}
+				}
+			});
+
+			
+
+			/*$(widget).unbind();
+			$(widget).bind('click', function(event){
+				$(widget).tooltip( "open" );
+				event.preventDefault();
+				
+			})*/
+			$(widget).tooltip( "open" );
+
+			$( widget ).bind( "mouseleave", function( event ) {
+				event.stopImmediatePropagation();
+				//$('body').bind('click', {elem: widget}, closewidget);
+				return false;
+			});
+
+		
+		}
+				
+	    
+	  });
+}
+
+function closewidget(event){
+	$(event.data.elem).tooltip("close");
+	$('body').unbind('click', closewidget);
+}
+ 
+$(function(){
+	
+	 if($('a.zooshortcode').length == 0) return;
+	
+	 
+	 
+	 $('a.zooshortcode').bind('click', function(){
+		var itemid = 0;
+		var classNames = $(event.target).attr('class').split(" ");
+	    for(i=0;i<classNames.length;i++){
+				if( ( (itmid = classNames[i].split('-')).length == 2) && itmid[0] == 'item' ){ 	    
+					//load_contentWidget(itmid[1], event.target);
+					itemid = itmid[1];
+				}
+	    }
+		 
+		if(itemid){
+			$('.closeBtn').click();
+			var data_item = "loading";
+			$.ajax({
+		        async:   false,
+			    url: '/index.php?option=com_map&amp;task=getinfowindow&amp;tmpl=component&amp;no_html=1&amp;marker_id='+itemid+'&amp;random='+Math.floor(Math.random()*10000000),
+			    success: function(data){ 	
+			    	data_item = data;
+			    }
+			});
+			
+			$(this).tooltip({
+
+				create: function(event, ui){},
+				content: "<div class='teaser-item'>"+data_item+"</div>",
+				position: {
+					my: "left bottom-10",
+					at: "left top",
+					using: function( position, feedback ) {
+						$( this ).css( position );
+						$( '<div>' )
+							.addClass( "arrow" )
+							.addClass( feedback.vertical )
+							.addClass( feedback.horizontal )
+							.appendTo( this );
+						$( '<div><span id="iconclosebtn"/></div>' )
+						.addClass( "closeBtn" )
+						.appendTo( this );
+					}
+				}
+			});
+		
+			$(this).bind( "mouseleave", function( event ) {
+				event.stopImmediatePropagation();
+				$('body').bind('click', {elem: $(this)}, closewidget);
+				return false;
+			});
+			
+			$(this).tooltip( "open" );
+			event.preventDefault();
+		}
+		return false;
+	 });
+	 
+	 
+});
+
+jQuery(document).ready(function($){
+    var _bxslider2 = $(".bxslider2");
+    var _rotatorio = $(".rotatorio");
+    if ( _bxslider2.length && _rotatorio.css("display") == "block" ){
+        _bxslider2.bxSlider({
+              mode: 'fade',
+                          pager: false,
+              auto: true,
+              autoControls: false,
+                          controls: false,
+              pause: 5000
+        });
+    }
+});
+

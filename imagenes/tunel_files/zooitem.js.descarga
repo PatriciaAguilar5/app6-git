@@ -1,0 +1,103 @@
+var posini = 1;
+
+function slideVertical(){
+	
+	event.preventDefault();
+	
+	$('#refresh').hide();
+	$('#loading').show();
+	
+	var ids = new Array(5);
+
+	$('.itemVertical').each(function(i){
+		
+		ids[i] = $(this).attr('rel');
+
+	});
+
+	$(function($) {
+
+		$.ajax({
+
+			url:'/index.php?option=com_zoolist&tmpl=raw&format=ajax&si=' + ids[0] + '&eo=' + ids[1] + '&lc=' + ids[2] + '&res=' + ids[3] + '&hot=' + ids[4],
+			success: function(datos){ 
+
+				var items = $.parseJSON(datos);
+				var distancia = $('#itemsInd').height();
+				$('#itemsInd').append('<ul id="lastSlide" class="zoo-item-list zoo-list" style="position:absolute; top: -' + distancia + 'px; z-index:-1">' + items + '</ul>');
+				$('#itemsInd').height(distancia);
+				$('#firstSlide').css({
+					"position": "absolute"
+				}).animate({
+					"top": "+=" + distancia + "px"
+				}, "slow", "easeInOutSine", function(){ $(this).remove() });
+				$('#lastSlide').css({
+					"position": "absolute"
+				}).animate({
+					"top": "+=" + distancia + "px"
+				}, "slow", "easeInOutSine").attr('id','firstSlide');
+
+			},
+			complete: function(){ 
+				$('#refresh').show();
+				$('#loading').hide();
+				posini++;
+			},
+
+		});
+
+	});
+}
+
+function slideHorizontal(){
+
+	//$('#refresh').html('').addClass('loading');
+	
+	$('#refresh').hide();
+	$('#loading').show();
+	
+	var ids = new Array(5);
+
+	$('.itemVertical').each(function(i){
+		
+		ids[i] = $(this).attr('rel');
+
+	});
+
+//	event.preventDefault();
+
+	$(function($) {
+
+		$.ajax({
+
+			url:'/index.php?option=com_zoolist&tmpl=raw&format=ajax&si=' + ids[0] + '&eo=' + ids[1] + '&lc=' + ids[2] + '&res=' + ids[3] + '&hot=' + ids[4],
+			success: function(datos){ 
+
+				var items = $.parseJSON(datos);
+				$('#itemsInd').append('<ul id="lastSlide" class="zoo-item-list zoo-list" style="left:-980px; position:absolute; width:100%">' + items + '</ul>');
+				$('#itemsInd').height($('#itemsInd').height());
+				//$('#firstSlide').css({"position": "absolute" }).addClass('slide', 1000, function() { $(this).remove() });
+				$('#firstSlide').css({
+					"position": "absolute"
+				}).animate({
+					"left": "+=980px"
+				}, "slow", "easeInOutSine", function(){ $(this).remove() });
+				$('#lastSlide').css({
+					"position": "absolute"
+				}).animate({
+					"left": "+=980px"
+				}, "slow", "easeInOutSine").attr('id','firstSlide');
+
+			},
+			complete: function(){ 
+				$('#refresh').show();
+				$('#loading').hide();
+				//$('#refresh').html('Refrescar').removeClass('loading');
+				posini++;
+			},
+
+		});
+
+	});
+
+};
